@@ -1,0 +1,104 @@
+<script type="text/javascript">
+   //1.独立的对象，建立2个，一个xiaowang，一个xiaoli
+   //2.让xiaoli和xiaowang 通过门铃进行通信
+   //3.先看一下xiaowang家有没有门，如果有门，直接通过门铃通迅（按didi），如果没有则建门
+   //4.两个单例之间开始通信
+
+   var  xiaowang = (function(argument){
+           this.doorRing=message;
+   	   };
+   	   var door;
+       var info = {
+       	sengMessage:function(message){
+              if (!door) {
+              	door=new xiaowangjia(message); //这个单例用的时候才new ,注意new 的成本
+              };
+              return door;
+       	}
+       };
+       return info;
+   })();
+
+   var xiaoli = {
+   	    callXiaowang:function(msg){
+   	    	var _xw = xiaowang.sengMessage(msg);
+   	    	alert(_xw.doorRing);
+   	    	_xw = null; //用完了，要把xiaowangjia置成空。等待垃圾回收，闭包问题
+
+   	    }
+   };
+
+   xiaoli.callXiaowang('didi'); //xiaoli 通过按didi发起通信请求
+</script>
+
+<script type="text/javascript">
+    //页面上有6个按钮：a,b,c,d,e,f
+    //a,b,c => top 归属到top命名空间
+    //d,e,f => banner 归属到banner命名空间
+    var top={
+      init:function(){
+             this.render();
+             this.bind();
+      },
+      a:4,
+      render:function(){
+          var me = this;
+          me.btna=$('#a');
+      },
+      bind:function(){
+        var me = this;
+        me.btna.click(function(){
+             //业务逻辑取出去
+             me.test();
+        });
+      },
+      test:function(){
+        a =5;
+      }
+    }
+
+    var banner={
+      init:function(){
+             this.render();
+             this.bind();
+      },
+      a:4,
+      render:function(){
+          var me = this;
+          me.btna=$('#d');
+      },
+      bind:function(){
+        var me = this;
+        me.btna.click(function(){
+             //业务逻辑取出去
+             me.test();
+        });
+      },
+      test:function(){
+        a =6;
+      }
+    }
+    
+    top.init();
+    banner.init();
+
+    //使用jQuery 绑定事件
+      $('#a').click(function(){
+            //执行逻辑
+      });
+      $('#b').click(function(){
+            //执行逻辑
+      });
+      $('#c').click(function(){
+            //执行逻辑
+      });
+      $('#d').click(function(){
+            //执行逻辑
+      });
+      $('#e').click(function(){
+            //执行逻辑
+      });
+      $('#f').click(function(){
+            //执行逻辑
+      });
+</script>
