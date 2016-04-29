@@ -1,0 +1,55 @@
+<meta charset="utf-8"/>
+<script type="text/javascript">
+     //1.用于创建特定类型的对象
+     //2.js开发的时候写单引号
+
+    //声明一个AA公司,造门;将造门放到AA进来，略改一下语法
+    var AA={	  
+     //造门
+     function:makeDoor(figure){
+     	//instanceof 指向当前父类
+        if (!(this instanceof makeDoor)) {
+        		return new makeDoor();
+        };
+        var _figure = "普通";
+        if (figure) {
+        	_figure= figure;
+        };
+
+     	this.lock="普通";  //门上的锁
+     	this.figure=_figure; //门上的花纹
+        this.create=function(){   //开始产门
+        	return  "【锁头】"+this.lock+"【花纹】"+this.figure
+        }
+    
+ }    
+     //声明一个BB公司,也可以造门
+
+    var BB={	  
+     //造门
+     function : makeDoor(figure){
+     	//instanceof 指向当前父类
+        if (!(this instanceof makeDoor)) {
+        		return new makeDoor();
+        };
+        var _figure = "普通";
+        if (figure) {
+        	_figure= figure;
+        };
+
+     	this.lock="普通";  //门上的锁
+     	this.figure=_figure; //门上的花纹
+        this.create=function(){   //开始产门
+        	return  "【锁头】"+this.lock+"【花纹】"+this.figure
+        }
+    
+    }
+    var xiaozhangjia=new AA.makeDoor(); //小张家需要建门,
+     //此处如果没有new ，会出现
+     //“JS_singleton.html:46 Uncaught RangeError: Maximum call stack size exceeded”
+     //堆栈溢出的错误。
+     alert("xiaozhangjia"+xiaozhangjia.create());  //开始产门
+
+     var xiaolijia =new BB.makeDoor('绚丽');//小李家也需要建门,
+     alert("xiaolijia"+xiaolijia.create());
+</script>
