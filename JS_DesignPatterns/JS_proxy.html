@@ -1,0 +1,26 @@
+<meta charset="utf-8"/>
+<script type="text/javascript">
+	//代理模式需要3方，房东委托中介将房子卖给买家
+
+	//1.买家buyer
+	function buyer(argument){
+		this.name="小明";
+	}
+
+	//2.中介agent（卖房saleHouse）
+	function agent(){
+
+	}
+	agent.prototype.saleHouse=function(){
+		new landlord(new buyer()).saleHouse("20万");
+	};
+
+	//3.房东landlord（卖房saleHouse），只是坐等收钱而已
+     function landlord(buyer){
+     	this.buyer_name=buyer.name;
+     	this.saleHouse=function(money){
+     		alert('收到了来自【'+this.buyer_name+'】房款：'+money+'人民币');
+     	}
+     }
+     (new agent).saleHouse();
+</script>
